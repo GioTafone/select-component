@@ -33,7 +33,6 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       >
         &times;
       </button>
-      <div className={styles.divider}></div>
       <div className={styles.caret}></div>
       <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}>
         {options.map((option) => (
