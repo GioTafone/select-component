@@ -14,8 +14,9 @@ const Select = ({ value, onChange, options }: SelectProps) => {
     onChange(undefined);
   };
   const selectOption = (option: SelectOption) => {
-    onChange(option)
-  }
+    onChange(option);
+  };
+
   return (
     <div
       onBlur={closeSelect}
@@ -27,7 +28,7 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       <button
         className={styles["clear-btn"]}
         onClick={(e) => {
-          e.stopPropagation()
+          e.stopPropagation();
           clearOptions();
         }}
       >
@@ -36,11 +37,17 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       <div className={styles.caret}></div>
       <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}>
         {options.map((option) => (
-          <li onClick={e => {
-            e.stopPropagation()
-            selectOption(option)
-            closeSelect()
-          }} key={option.value} className={styles.option}>
+          <li
+            onClick={(e) => {
+              e.stopPropagation();
+              selectOption(option);
+              closeSelect();
+            }}
+            key={option.value}
+            className={`${styles.option} ${
+              option === value ? styles.selected : ""
+            }`}
+          >
             {option.label}
           </li>
         ))}

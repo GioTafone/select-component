@@ -4,6 +4,7 @@ import Select from "./components/Select";
 
 function App() {
   const [value, setValue] = useState<typeof options[0] | undefined>(options[0]);
+  
   return (
     <>
       <h1>Select your interests</h1>
