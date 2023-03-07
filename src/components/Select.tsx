@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectOption, SelectProps } from "../types";
 import styles from "../styles/select.module.css";
 
 const Select = ({ value, onChange, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+
+  useEffect(() => {
+    if(isOpen) {
+      setHighlightedIndex(0)
+    }
+  }, [isOpen])
+
+
   const handleSelect = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -14,7 +23,7 @@ const Select = ({ value, onChange, options }: SelectProps) => {
     onChange(undefined);
   };
   const selectOption = (option: SelectOption) => {
-    onChange(option);
+    if(option !== value) onChange(option);
   };
 
   return (
@@ -36,16 +45,19 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       </button>
       <div className={styles.caret}></div>
       <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}>
-        {options.map((option) => (
+        {options.map((option, index) => (
           <li
             onClick={(e) => {
               e.stopPropagation();
               selectOption(option);
               closeSelect();
             }}
+            onMouseEnter={() => setHighlightedIndex(index)}
             key={option.value}
             className={`${styles.option} ${
               option === value ? styles.selected : ""
+            } ${
+              index === highlightedIndex ? styles.highlighted : ""
             }`}
           >
             {option.label}

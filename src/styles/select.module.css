@@ -65,11 +65,11 @@
     cursor: pointer;
 }
 
+.option.selected {
+    background-color: #1e2f97;
+    color: white;
+}
 .option.highlighted {
     background-color: #797ef6;
     color: white;
-}
-
-.option.selected {
-    background-color: #1e2f97;
 }
