@@ -1,4 +1,4 @@
-# select-component
+# Select component for forms
 
 ## Select component created with Vite. Developed using Typescript and React. 
 
